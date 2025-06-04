@@ -6,22 +6,92 @@ app = Flask(__name__)
 
 # 정류장 데이터
 stations = {
+    "33121": {
+        "name": "한경국립대학교 (강남역 방면)",
+        "buses": ["4401", "8200", "8201", "8204"],
+        "previous_station": None
+    },
     "34151": {
-        "name": "중대앞 버스정류장",
+        "name": "중앙대.롯데캐슬아파트 (강남역 방면)",
         "buses": ["4401", "8200", "8201", "8204"],
         "previous_station": "33121"
     },
-    "33121": {
-        "name": "한경국립대학교",
+    "33061": {
+        "name": "대림동산 (강남역 방면)",
         "buses": ["4401", "8200", "8201", "8204"],
-        "previous_station": None
+        "previous_station": "34151"
+    },
+    "33789": {
+        "name": "공도시외버스정류장 (강남역 방면)",
+        "buses": ["4401", "8200", "8201", "8204"],
+        "previous_station": "33061"
+    },
+    "33018": {
+        "name": "주은.풍림아파트 (강남역 방면)",
+        "buses": ["4401", "8200", "8201", "8204"],
+        "previous_station": "33789"
+    },
+    "22297": {
+        "name": "매헌시민의숲.양재꽃시장 (강남역 방면)",
+        "buses": ["4401"],
+        "previous_station": "33018"
+    },
+    "22002": {
+        "name": "말죽거리공원사거리(중) (강남역 방면)",
+        "buses": ["4401"],
+        "previous_station": "22297"
+    },
+    "22004": {
+        "name": "양재역.서초문화예술회관(중) (강남역 방면)",
+        "buses": ["4401"],
+        "previous_station": "22002"
+    },
+    "22006": {
+        "name": "뱅뱅사거리(중) (강남역 방면)",
+        "buses": ["4401"],
+        "previous_station": "22004"
+    },
+    "22008": {
+        "name": "래미안아파트.파이낸셜뉴스(중) (강남역 방면)",
+        "buses": ["4401"],
+        "previous_station": "22006"
+    },
+    "22010": {
+        "name": "신분당선강남역(중) (회차)",
+        "buses": ["4401"],
+        "previous_station": "22008"
+    },
+    "33017": {
+        "name": "주은.풍림아파트 (한경대 방면)",
+        "buses": ["4401"],
+        "previous_station": "22010"
+    },
+    "33668": {
+        "name": "공도시외버스정류장 (한경대 방면)",
+        "buses": ["4401"],
+        "previous_station": "33017"
+    },
+    "33060": {
+        "name": "대림동산 (한경대 방면)",
+        "buses": ["4401"],
+        "previous_station": "33668"
+    },
+    "34157": {
+        "name": "중앙대.롯데캐슬아파트 (한경대 방면)",
+        "buses": ["4401"],
+        "previous_station": "33060"
+    },
+    "33120": {
+        "name": "한경국립대학교 (한경대 방면)",
+        "buses": ["4401"],
+        "previous_station": "34157"
     }
 }
 
 # 대기자 리스트
 waiting_data = {
-    "34151": {bus: [] for bus in stations["34151"]["buses"]},
-    "33121": {bus: [] for bus in stations["33121"]["buses"]}
+    station_id: {bus: [] for bus in station["buses"]}
+    for station_id, station in stations.items()
 }
 
 @app.route("/")
